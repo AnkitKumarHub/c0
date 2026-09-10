@@ -67,13 +67,14 @@ model Message {
 
 // By AI
 model Fragment {
-  id String @id @default(cuid())
-  messageId String @unique
-  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  id        String  @id @default(cuid())
+  messageId String  @unique
+  message   Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
 
+  sandboxId  String?
   sandboxUrl String
-  title String
-  files Json
+  title      String
+  files      Json
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -32,7 +32,12 @@ export const codeAgentFunction = inngest.createFunction(
   async ({ event, step }) => {
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create({
-        template: "xxf1re4gzsjkruurieg4"
+        template: "xxf1re4gzsjkruurieg4",
+        timeoutMs: 1000 * 60 * 60 * 1, // 1 hour,
+        lifecycle: {
+          onTimeout: "pause",   // pause instead of kill
+          autoResume: true,     // wake up when URL is hit again
+        },
       })
       return sandbox.sandboxId  // grabbing the sandbox id 
     })
@@ -239,7 +244,7 @@ export const codeAgentFunction = inngest.createFunction(
 
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await connectSandbox(sandboxId);
-      return `http://${sandbox.getHost(3000)}`
+      return `https://${sandbox.getHost(3000)}`
     });
 
     await step.run("save-result", async () => {
@@ -262,6 +267,7 @@ export const codeAgentFunction = inngest.createFunction(
           type: MessageType.RESULT,
           fragments: {
             create: {
+              sandboxId,
               sandboxUrl,
               title: fragmentTitle,
               files

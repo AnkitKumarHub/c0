@@ -115,6 +115,7 @@ export type MessageScalarFieldEnum = (typeof MessageScalarFieldEnum)[keyof typeo
 export const FragmentScalarFieldEnum = {
   id: 'id',
   messageId: 'messageId',
+  sandboxId: 'sandboxId',
   sandboxUrl: 'sandboxUrl',
   title: 'title',
   files: 'files',

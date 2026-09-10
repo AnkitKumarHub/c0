@@ -27,6 +27,7 @@ export type AggregateFragment = {
 export type FragmentMinAggregateOutputType = {
   id: string | null
   messageId: string | null
+  sandboxId: string | null
   sandboxUrl: string | null
   title: string | null
   createdAt: Date | null
@@ -36,6 +37,7 @@ export type FragmentMinAggregateOutputType = {
 export type FragmentMaxAggregateOutputType = {
   id: string | null
   messageId: string | null
+  sandboxId: string | null
   sandboxUrl: string | null
   title: string | null
   createdAt: Date | null
@@ -45,6 +47,7 @@ export type FragmentMaxAggregateOutputType = {
 export type FragmentCountAggregateOutputType = {
   id: number
   messageId: number
+  sandboxId: number
   sandboxUrl: number
   title: number
   files: number
@@ -57,6 +60,7 @@ export type FragmentCountAggregateOutputType = {
 export type FragmentMinAggregateInputType = {
   id?: true
   messageId?: true
+  sandboxId?: true
   sandboxUrl?: true
   title?: true
   createdAt?: true
@@ -66,6 +70,7 @@ export type FragmentMinAggregateInputType = {
 export type FragmentMaxAggregateInputType = {
   id?: true
   messageId?: true
+  sandboxId?: true
   sandboxUrl?: true
   title?: true
   createdAt?: true
@@ -75,6 +80,7 @@ export type FragmentMaxAggregateInputType = {
 export type FragmentCountAggregateInputType = {
   id?: true
   messageId?: true
+  sandboxId?: true
   sandboxUrl?: true
   title?: true
   files?: true
@@ -158,6 +164,7 @@ export type FragmentGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 export type FragmentGroupByOutputType = {
   id: string
   messageId: string
+  sandboxId: string | null
   sandboxUrl: string
   title: string
   files: runtime.JsonValue
@@ -189,6 +196,7 @@ export type FragmentWhereInput = {
   NOT?: Prisma.FragmentWhereInput | Prisma.FragmentWhereInput[]
   id?: Prisma.StringFilter<"Fragment"> | string
   messageId?: Prisma.StringFilter<"Fragment"> | string
+  sandboxId?: Prisma.StringNullableFilter<"Fragment"> | string | null
   sandboxUrl?: Prisma.StringFilter<"Fragment"> | string
   title?: Prisma.StringFilter<"Fragment"> | string
   files?: Prisma.JsonFilter<"Fragment">
@@ -200,6 +208,7 @@ export type FragmentWhereInput = {
 export type FragmentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
+  sandboxId?: Prisma.SortOrderInput | Prisma.SortOrder
   sandboxUrl?: Prisma.SortOrder
   title?: Prisma.SortOrder
   files?: Prisma.SortOrder
@@ -214,6 +223,7 @@ export type FragmentWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.FragmentWhereInput | Prisma.FragmentWhereInput[]
   OR?: Prisma.FragmentWhereInput[]
   NOT?: Prisma.FragmentWhereInput | Prisma.FragmentWhereInput[]
+  sandboxId?: Prisma.StringNullableFilter<"Fragment"> | string | null
   sandboxUrl?: Prisma.StringFilter<"Fragment"> | string
   title?: Prisma.StringFilter<"Fragment"> | string
   files?: Prisma.JsonFilter<"Fragment">
@@ -225,6 +235,7 @@ export type FragmentWhereUniqueInput = Prisma.AtLeast<{
 export type FragmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
+  sandboxId?: Prisma.SortOrderInput | Prisma.SortOrder
   sandboxUrl?: Prisma.SortOrder
   title?: Prisma.SortOrder
   files?: Prisma.SortOrder
@@ -241,6 +252,7 @@ export type FragmentScalarWhereWithAggregatesInput = {
   NOT?: Prisma.FragmentScalarWhereWithAggregatesInput | Prisma.FragmentScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Fragment"> | string
   messageId?: Prisma.StringWithAggregatesFilter<"Fragment"> | string
+  sandboxId?: Prisma.StringNullableWithAggregatesFilter<"Fragment"> | string | null
   sandboxUrl?: Prisma.StringWithAggregatesFilter<"Fragment"> | string
   title?: Prisma.StringWithAggregatesFilter<"Fragment"> | string
   files?: Prisma.JsonWithAggregatesFilter<"Fragment">
@@ -250,6 +262,7 @@ export type FragmentScalarWhereWithAggregatesInput = {
 
 export type FragmentCreateInput = {
   id?: string
+  sandboxId?: string | null
   sandboxUrl: string
   title: string
   files: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -261,6 +274,7 @@ export type FragmentCreateInput = {
 export type FragmentUncheckedCreateInput = {
   id?: string
   messageId: string
+  sandboxId?: string | null
   sandboxUrl: string
   title: string
   files: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -270,6 +284,7 @@ export type FragmentUncheckedCreateInput = {
 
 export type FragmentUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -281,6 +296,7 @@ export type FragmentUpdateInput = {
 export type FragmentUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -291,6 +307,7 @@ export type FragmentUncheckedUpdateInput = {
 export type FragmentCreateManyInput = {
   id?: string
   messageId: string
+  sandboxId?: string | null
   sandboxUrl: string
   title: string
   files: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -300,6 +317,7 @@ export type FragmentCreateManyInput = {
 
 export type FragmentUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -310,6 +328,7 @@ export type FragmentUpdateManyMutationInput = {
 export type FragmentUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   messageId?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -325,6 +344,7 @@ export type FragmentNullableScalarRelationFilter = {
 export type FragmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
+  sandboxId?: Prisma.SortOrder
   sandboxUrl?: Prisma.SortOrder
   title?: Prisma.SortOrder
   files?: Prisma.SortOrder
@@ -335,6 +355,7 @@ export type FragmentCountOrderByAggregateInput = {
 export type FragmentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
+  sandboxId?: Prisma.SortOrder
   sandboxUrl?: Prisma.SortOrder
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -344,6 +365,7 @@ export type FragmentMaxOrderByAggregateInput = {
 export type FragmentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   messageId?: Prisma.SortOrder
+  sandboxId?: Prisma.SortOrder
   sandboxUrl?: Prisma.SortOrder
   title?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
@@ -384,6 +406,7 @@ export type FragmentUncheckedUpdateOneWithoutMessageNestedInput = {
 
 export type FragmentCreateWithoutMessageInput = {
   id?: string
+  sandboxId?: string | null
   sandboxUrl: string
   title: string
   files: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -393,6 +416,7 @@ export type FragmentCreateWithoutMessageInput = {
 
 export type FragmentUncheckedCreateWithoutMessageInput = {
   id?: string
+  sandboxId?: string | null
   sandboxUrl: string
   title: string
   files: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -418,6 +442,7 @@ export type FragmentUpdateToOneWithWhereWithoutMessageInput = {
 
 export type FragmentUpdateWithoutMessageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -427,6 +452,7 @@ export type FragmentUpdateWithoutMessageInput = {
 
 export type FragmentUncheckedUpdateWithoutMessageInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
+  sandboxId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   sandboxUrl?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   files?: Prisma.JsonNullValueInput | runtime.InputJsonValue
@@ -439,6 +465,7 @@ export type FragmentUncheckedUpdateWithoutMessageInput = {
 export type FragmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   messageId?: boolean
+  sandboxId?: boolean
   sandboxUrl?: boolean
   title?: boolean
   files?: boolean
@@ -450,6 +477,7 @@ export type FragmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 export type FragmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   messageId?: boolean
+  sandboxId?: boolean
   sandboxUrl?: boolean
   title?: boolean
   files?: boolean
@@ -461,6 +489,7 @@ export type FragmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type FragmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   messageId?: boolean
+  sandboxId?: boolean
   sandboxUrl?: boolean
   title?: boolean
   files?: boolean
@@ -472,6 +501,7 @@ export type FragmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type FragmentSelectScalar = {
   id?: boolean
   messageId?: boolean
+  sandboxId?: boolean
   sandboxUrl?: boolean
   title?: boolean
   files?: boolean
@@ -479,7 +509,7 @@ export type FragmentSelectScalar = {
   updatedAt?: boolean
 }
 
-export type FragmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "messageId" | "sandboxUrl" | "title" | "files" | "createdAt" | "updatedAt", ExtArgs["result"]["fragment"]>
+export type FragmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "messageId" | "sandboxId" | "sandboxUrl" | "title" | "files" | "createdAt" | "updatedAt", ExtArgs["result"]["fragment"]>
 export type FragmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   message?: boolean | Prisma.MessageDefaultArgs<ExtArgs>
 }
@@ -498,6 +528,7 @@ export type $FragmentPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
     messageId: string
+    sandboxId: string | null
     sandboxUrl: string
     title: string
     files: runtime.JsonValue
@@ -929,6 +960,7 @@ export interface Prisma__FragmentClient<T, Null = never, ExtArgs extends runtime
 export interface FragmentFieldRefs {
   readonly id: Prisma.FieldRef<"Fragment", 'String'>
   readonly messageId: Prisma.FieldRef<"Fragment", 'String'>
+  readonly sandboxId: Prisma.FieldRef<"Fragment", 'String'>
   readonly sandboxUrl: Prisma.FieldRef<"Fragment", 'String'>
   readonly title: Prisma.FieldRef<"Fragment", 'String'>
   readonly files: Prisma.FieldRef<"Fragment", 'Json'>
