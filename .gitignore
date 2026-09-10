@@ -45,3 +45,6 @@ next-env.d.ts
 .claude
 .windsurf
 notes.md
+.cursor
+design.md
+landing-page.md
