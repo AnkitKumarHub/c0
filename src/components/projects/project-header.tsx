@@ -46,30 +46,32 @@ export default function ProjectHeader({ projectId }: { projectId: string }) {
   return (
     <header className="flex items-center justify-between border-b p-2">
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="!pl-2 transition-opacity hover:bg-transparent hover:opacity-75 focus-visible:ring-0"
-          >
-            <C0Mark className="h-7 w-auto shrink-0" />
-            <span className="text-sm font-medium capitalize">
-              {isPending ? (
-                <Spinner />
-              ) : (
-                formatProjectName(project?.name || "Untitled Project")
-              )}
-            </span>
-            <ChevronDownIcon className="ml-2 size-4" />
-          </Button>
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="ghost"
+              size="sm"
+              className="!pl-2 transition-opacity hover:bg-transparent hover:opacity-75 focus-visible:ring-0"
+            />
+          }
+        >
+          <C0Mark className="h-7 w-auto shrink-0" />
+          <span className="text-sm font-medium capitalize">
+            {isPending ? (
+              <Spinner />
+            ) : (
+              formatProjectName(project?.name || "Untitled Project")
+            )}
+          </span>
+          <ChevronDownIcon className="ml-2 size-4" />
         </DropdownMenuTrigger>
 
         <DropdownMenuContent side="bottom" align="start">
-          <DropdownMenuItem asChild>
-            <Link href="/"  className="flex items-center gap-2">
-              <ChevronLeftIcon className="size-4  shrink-0" />
-              <span>Go to Dashboard</span>
-            </Link>
+          <DropdownMenuItem
+            render={<Link href="/" className="flex items-center gap-2" />}
+          >
+            <ChevronLeftIcon className="size-4 shrink-0" />
+            <span>Go to Dashboard</span>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuSub>

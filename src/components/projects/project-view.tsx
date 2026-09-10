@@ -70,11 +70,14 @@ export function ProjectView({ projectId }: { projectId: string }) {
               </TabsList>
 
               <div className="ml-auto flex items-center gap-x-2">
-                <Button asChild size="sm" variant="outline">
-                  <Link href="/">
-                    <CrownIcon className="mr-2 size-4" />
-                    Upgrade
-                  </Link>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  nativeButton={false}
+                  render={<Link href="/" />}
+                >
+                  <CrownIcon className="mr-2 size-4" />
+                  Upgrade
                 </Button>
               </div>
             </div>

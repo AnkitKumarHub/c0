@@ -34,7 +34,7 @@ export function Hint({ children, text, side = "top", align = "center" }: HintPro
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger asChild>{children}</TooltipTrigger>
+        <TooltipTrigger render={children as React.ReactElement} />
         <TooltipContent side={side} align={align}>
           {text}
         </TooltipContent>
