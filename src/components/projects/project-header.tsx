@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ChevronDownIcon, ChevronLeftIcon, SunMoonIcon } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Chai0Mark } from "@/components/brand/chai0-logo";
+import { C0Mark } from "@/components/brand/c0-logo";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -52,7 +52,7 @@ export default function ProjectHeader({ projectId }: { projectId: string }) {
             size="sm"
             className="!pl-2 transition-opacity hover:bg-transparent hover:opacity-75 focus-visible:ring-0"
           >
-            <Chai0Mark className="h-7 w-auto shrink-0" />
+            <C0Mark className="h-7 w-auto shrink-0" />
             <span className="text-sm font-medium capitalize">
               {isPending ? (
                 <Spinner />

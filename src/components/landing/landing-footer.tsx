@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Chai0Logo } from "@/components/brand/chai0-logo"
+import { C0Logo } from "@/components/brand/c0-logo"
 
 export function LandingFooter() {
   return (
@@ -7,7 +7,7 @@ export function LandingFooter() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-12 mb-16">
           <div className="col-span-2 md:col-span-1 space-y-4">
-            <Chai0Logo />
+            <C0Logo />
             <p className="text-sm text-zinc-500">
               AI-powered web app generator
             </p>
@@ -51,7 +51,7 @@ export function LandingFooter() {
         
         <div className="pt-8 border-t border-zinc-800/50 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-sm text-zinc-500">
-            © 2025 chai0. All rights reserved.
+            © 2025 c0. All rights reserved.
           </p>
         </div>
       </div>

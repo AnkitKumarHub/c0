@@ -11,7 +11,7 @@ import type { Fragment } from "@/generated/prisma/client";
 import { MessageRole, MessageType } from "@/generated/prisma/enums";
 import { format } from "date-fns";
 import { ChevronRightIcon, Code2Icon } from "lucide-react";
-import { Chai0Mark } from "@/components/brand/chai0-logo";
+import { C0Mark } from "@/components/brand/c0-logo";
 
 /**
  * Clickable card representing a generated fragment inside an assistant message.
@@ -77,7 +77,7 @@ function UserMessage({ content }: { content: string }) {
 /**
  * A message rendered by the assistant.
  *
- * Shows the chai0 mark, a hover-revealed timestamp, the markdown response, and —
+ * Shows the c0 mark, a hover-revealed timestamp, the markdown response, and —
  * for successful results — a {@link FragmentCard} linking to the generated app.
  * Error-type messages are styled in red.
  *
@@ -111,7 +111,7 @@ function AssistantMessage({
       )}
     >
       <div className="mb-2 flex items-center gap-2 pl-2">
-        <Chai0Mark className="h-7 w-auto shrink-0" />
+        <C0Mark className="h-7 w-auto shrink-0" />
         <span className="text-xs text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100">
           {format(new Date(createdAt), "HH:mm 'on' MMM dd, yyyy")}
         </span>

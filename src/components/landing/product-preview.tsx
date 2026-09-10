@@ -262,7 +262,7 @@ export function ProductPreview() {
         <div className="hidden w-80 flex-col border-r border-zinc-800 bg-zinc-900/40 md:flex">
           <div className="flex items-center gap-2 border-b border-zinc-800/80 p-4">
             <Bot className="size-5 text-zinc-400" />
-            <span className="text-sm font-medium text-zinc-300">chai0 Assistant</span>
+            <span className="text-sm font-medium text-zinc-300">c0 Assistant</span>
           </div>
 
           <div className="flex-1 space-y-4 overflow-hidden p-4">
@@ -333,7 +333,7 @@ export function ProductPreview() {
               </div>
               <span className="ml-3 text-xs text-zinc-500">auth-page.tsx</span>
             </div>
-            <span className="text-[10px] text-zinc-600">chai0 Editor</span>
+            <span className="text-[10px] text-zinc-600">c0 Editor</span>
           </div>
 
           {/* Clickable Tabs: Code first, Preview second */}

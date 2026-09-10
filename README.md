@@ -1,4 +1,4 @@
-# chai0
+# c0
 
 AI-powered web app generator. Describe what you want in natural language; a coding agent builds a real Next.js app in an isolated cloud sandbox. Iterate in chat, preview the live result, and browse the generated source.
 

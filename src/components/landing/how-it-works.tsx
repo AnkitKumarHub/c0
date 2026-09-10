@@ -216,7 +216,7 @@ export function HowItWorks() {
             transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
             className="mb-4 font-heading text-4xl font-medium text-white md:text-5xl"
           >
-            How chai0 works
+            How c0 works
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}

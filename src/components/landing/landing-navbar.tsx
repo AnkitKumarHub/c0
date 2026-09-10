@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { Menu, X } from "lucide-react";
-import { Chai0Logo } from "@/components/brand/chai0-logo";
+import { C0Logo } from "@/components/brand/c0-logo";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -26,18 +26,20 @@ export function LandingNavbar() {
 
   return (
     <>
-      <header className="fixed inset-x-0 top-0 z-50">
+      <header className="fixed inset-x-0 top-0 z-50 px-4">
         <nav
           className={cn(
-            "mx-auto mt-4 flex h-14 max-w-5xl items-center justify-between rounded-2xl border px-5 transition-all duration-300",
+            "mx-auto mt-4 flex h-14 max-w-5xl items-center justify-between rounded-2xl border px-5",
+            /* Always glass — backdrop-blur is constant so content underneath bleeds through */
+            "backdrop-blur-xl transition-all duration-500 ease-out",
             scrolled
-              ? "border-zinc-800/60 bg-zinc-950/80 shadow-lg shadow-black/20 backdrop-blur-xl"
-              : "border-transparent bg-transparent"
+              ? "border-white/[0.06] bg-zinc-900/50 shadow-lg shadow-black/30"
+              : "border-white/[0.04] bg-zinc-900/30"
           )}
         >
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <Chai0Logo className="gap-2" />
+            <C0Logo className="gap-2" />
           </Link>
 
           {/* Desktop Nav */}
@@ -63,7 +65,7 @@ export function LandingNavbar() {
             </Link>
             <Link
               href="/sign-in"
-              className="rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-950 transition-transform duration-150 active:scale-[0.97]"
+              className="rounded-full bg-white px-4 py-2 text-sm font-medium text-zinc-950 transition-all duration-150 hover:bg-zinc-200 active:scale-[0.97]"
             >
               Start Building
             </Link>

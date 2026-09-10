@@ -102,7 +102,7 @@ export function StackCarousel() {
         <div className="space-y-4">
           <h2 className="text-4xl md:text-5xl font-medium text-white">Built on a modern stack</h2>
           <p className="text-base md:text-lg text-zinc-400 max-w-[65ch]">
-            chai0 generates production-ready Next.js apps using the tools you already know.
+            c0 generates production-ready Next.js apps using the tools you already know.
           </p>
         </div>
         <div className="hidden md:flex gap-2">

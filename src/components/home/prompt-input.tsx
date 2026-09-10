@@ -66,7 +66,7 @@ export function PromptInput() {
         <InputGroupTextarea
           value={prompt}
           onChange={(event) => setPrompt(event.target.value)}
-          placeholder="Ask chai0 to build..."
+          placeholder="Ask c0 to build..."
           rows={4}
           // disabled={isPending}
           className="min-h-24 px-4 pt-4 text-sm"
@@ -82,7 +82,7 @@ export function PromptInput() {
           className="w-full justify-between border-t border-border/50 px-3 py-2"
         >
           <Button variant="outline" size="sm" className="rounded-full">
-            <InputGroupText>chai0 Max</InputGroupText>
+            <InputGroupText>c0 Max</InputGroupText>
             <ChevronDown className="size-3 opacity-60" />
           </Button>
           <InputGroupButton

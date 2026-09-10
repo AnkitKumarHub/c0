@@ -44,7 +44,7 @@ export function HeroSection() {
           {/* Eyebrow */}
           <motion.div variants={itemVariants} className="mb-6 flex items-center rounded-full border border-zinc-800/80 bg-zinc-900/50 px-4 py-1.5 backdrop-blur-sm">
             <Sparkles className="mr-2 size-4 text-zinc-400" />
-            <span className="text-sm font-medium text-zinc-300">Introducing chai0</span>
+            <span className="text-sm font-medium text-zinc-300">Introducing c0</span>
           </motion.div>
 
           {/* Headline */}
