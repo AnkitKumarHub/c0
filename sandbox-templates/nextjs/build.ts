@@ -3,8 +3,11 @@ import { Template, defaultBuildLogger } from 'e2b'
 import { template as nextJSTemplate } from './template'
 import "dotenv/config"
 
-console.log(process.env.E2B_API_KEY)
+const apiKey = process.env.E2B_API_KEY
 
+if (!apiKey) {
+    throw new Error("E2B_API_KEY is not set. Add it to .env before building the template.")
+}
 
 Template.build(nextJSTemplate , "c0-build" , {
     cpuCount: 4,

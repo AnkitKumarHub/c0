@@ -14,6 +14,66 @@ export interface CodeAgentState {
   files: Record<string, string>
 }
 
+// Next dev refuses to serve /_next/* to any host outside its allowlist, which
+// would 403 the client bundle when the preview is reached over the E2B domain.
+const SANDBOX_NEXT_CONFIG = `import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  allowedDevOrigins: ["*.e2b.app", "**.e2b.app", "*.e2b.dev", "**.e2b.dev"],
+};
+
+export default nextConfig;
+`;
+
+async function probeSandboxPreview(sandboxId: string) {
+  const sandbox = await connectSandbox(sandboxId);
+  const host = sandbox.getHost(3000);
+  const publicUrl = `https://${host}`;
+
+  async function run(command: string) {
+    const result = await sandbox.commands.run(command, { timeoutMs: 60_000 });
+    return result.stdout.trim();
+  }
+
+  try {
+    const localStatus = await run(
+      'curl -s -L -o /tmp/preview-local.html -w "%{http_code}" --max-time 30 http://localhost:3000/ || echo 000'
+    );
+    const publicStatus = await run(
+      `curl -s -L -o /tmp/preview-public.html -w "%{http_code}" --max-time 30 ${publicUrl}/ || echo 000`
+    );
+    const publicHtml = await sandbox.files.read("/tmp/preview-public.html");
+    const chunk =
+      publicHtml.match(/\/_next\/static\/chunks\/[^"]+\.js/)?.[0] ?? "";
+    const localAssetStatus = chunk
+      ? await run(
+          `curl -s -L -o /dev/null -w "%{http_code}" --max-time 30 "http://localhost:3000${chunk}" || echo 000`
+        )
+      : "000";
+    const publicAssetStatus = chunk
+      ? await run(
+          `curl -s -L -o /dev/null -w "%{http_code}" --max-time 30 "${publicUrl}${chunk}" || echo 000`
+        )
+      : "000";
+    const output = `local=${localStatus} public=${publicStatus} chunk=${chunk || "none"} localAsset=${localAssetStatus} publicAsset=${publicAssetStatus}`;
+
+    return {
+      ok:
+        localStatus === "200" &&
+        publicStatus === "200" &&
+        publicAssetStatus === "200",
+      output,
+      url: publicUrl,
+    };
+  } catch (error) {
+    return {
+      ok: false,
+      output: `probe failed: ${error}`,
+      url: publicUrl,
+    };
+  }
+}
+
 export const processTask = inngest.createFunction(
   { id: "process-task", triggers: { event: "app/task.created" } },
   async ({ event, step }) => {
@@ -40,6 +100,12 @@ export const codeAgentFunction = inngest.createFunction(
         },
       })
       return sandbox.sandboxId  // grabbing the sandbox id 
+    })
+
+    await step.run("prepare-sandbox", async () => {
+      const sandbox = await connectSandbox(sandboxId);
+      await sandbox.files.write("next.config.ts", SANDBOX_NEXT_CONFIG);
+      return { patched: true };
     })
 
     const previousMessages = await step.run("get-previous-messages", async () => {
@@ -171,7 +237,7 @@ export const codeAgentFunction = inngest.createFunction(
               try {
                 const sanbox = await Sandbox.connect(sandboxId);
 
-                const contents: any = [];
+                const contents: Array<{ path: string; content: string }> = [];
                 console.log(contents)
 
                 for (const file of files) {
@@ -242,9 +308,10 @@ export const codeAgentFunction = inngest.createFunction(
       Object.keys(result.state.data.files || {}).length === 0;
 
 
-    const sandboxUrl = await step.run("get-sandbox-url", async () => {
-      const sandbox = await connectSandbox(sandboxId);
-      return `https://${sandbox.getHost(3000)}`
+    const previewProbe = await step.run("probe-preview", async () => {
+      const probe = await probeSandboxPreview(sandboxId);
+      console.log(`[sandbox ${sandboxId}] preview probe: ${probe.output}`);
+      return probe;
     });
 
     await step.run("save-result", async () => {
@@ -262,13 +329,15 @@ export const codeAgentFunction = inngest.createFunction(
       return prisma.message.create({
         data: {
           projectId: event.data.projectId,
-          content: responseText,
+          content: previewProbe.ok
+            ? responseText
+            : `${responseText}\n\nPreview check warning: ${previewProbe.output}`,
           role: MessageRole.ASSISTANT,
           type: MessageType.RESULT,
           fragments: {
             create: {
               sandboxId,
-              sandboxUrl,
+              sandboxUrl: previewProbe.url,
               title: fragmentTitle,
               files
             }
@@ -278,7 +347,7 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
     return {
-      url: sandboxUrl, title: fragmentTitle, files, summary
+      url: previewProbe.url, title: fragmentTitle, files, summary, preview: previewProbe
     }
   }
 )
